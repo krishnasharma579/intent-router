@@ -36,5 +36,5 @@ def classify_intent(user_input: str) -> str:
         logger.info("Successfully routed to: %s", result.intent)
         return result.intent
     except Exception as exc:
-        logger.exception("Failed to classify intent.")
+        logger.exception("Failed to classify user input due to routing pipeline error.")
         raise RuntimeError(f"Routing pipeline failed: {exc}") from exc
