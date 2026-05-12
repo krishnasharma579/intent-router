@@ -16,7 +16,9 @@ def classify_intent(user_input: str) -> str:
     try:
         normalized_input = user_input.strip()
     except AttributeError as exc:
-        raise TypeError("user_input must be a string.") from exc
+        raise TypeError(
+            f"user_input must be a string, got {type(user_input).__name__}."
+        ) from exc
     if not normalized_input:
         raise ValueError("user_input cannot be empty.")
 

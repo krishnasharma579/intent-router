@@ -9,7 +9,9 @@ def _reload_config_module():
     return importlib.reload(config_module)
 
 
-def test_config_uses_consistent_default_model_name(monkeypatch):
+def test_config_uses_consistent_default_model_name(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.setenv("GROQ_API_KEY", "test-key")
     monkeypatch.delenv("MODEL_NAME", raising=False)
     monkeypatch.delenv("ROUTER_TEMPERATURE", raising=False)
@@ -19,7 +21,9 @@ def test_config_uses_consistent_default_model_name(monkeypatch):
     assert config.settings.MODEL_NAME == config.DEFAULT_MODEL_NAME
 
 
-def test_invalid_router_temperature_raises_clear_error(monkeypatch):
+def test_invalid_router_temperature_raises_clear_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.setenv("GROQ_API_KEY", "test-key")
     monkeypatch.setenv("ROUTER_TEMPERATURE", "hot")
 

@@ -16,7 +16,7 @@ class Settings(BaseModel):
     """Application settings with environment variable validation."""
 
     GROQ_API_KEY: str = Field(min_length=1)
-    MODEL_NAME: str = DEFAULT_MODEL_NAME
+    MODEL_NAME: str = Field(default=DEFAULT_MODEL_NAME)
     ROUTER_TEMPERATURE: float = Field(default=DEFAULT_ROUTER_TEMPERATURE)
 
     @field_validator("GROQ_API_KEY")

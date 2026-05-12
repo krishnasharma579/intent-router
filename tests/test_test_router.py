@@ -1,6 +1,6 @@
-from test_router import TEST_QUERIES, run_tests
-
 import pytest
+
+from test_router import TEST_QUERIES, run_tests
 
 
 def test_run_tests_success_path() -> None:
