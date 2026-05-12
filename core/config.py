@@ -17,7 +17,7 @@ class Settings(BaseModel):
 
     GROQ_API_KEY: str = Field(min_length=1)
     MODEL_NAME: str = DEFAULT_MODEL_NAME
-    ROUTER_TEMPERATURE: float = Field(default=DEFAULT_ROUTER_TEMPERATURE, ge=0.0, le=1.0)
+    ROUTER_TEMPERATURE: float = Field(default=DEFAULT_ROUTER_TEMPERATURE)
 
     @field_validator("GROQ_API_KEY")
     @classmethod
@@ -30,11 +30,16 @@ class Settings(BaseModel):
 
 def _parse_router_temperature(raw_value: str) -> float:
     try:
-        return float(raw_value)
+        parsed_temperature = float(raw_value)
     except ValueError as exc:
         raise ValueError(
             "Invalid ROUTER_TEMPERATURE value. Expected a number between 0.0 and 1.0."
         ) from exc
+    if not 0.0 <= parsed_temperature <= 1.0:
+        raise ValueError(
+            "Invalid ROUTER_TEMPERATURE value. Expected a number between 0.0 and 1.0."
+        )
+    return parsed_temperature
 
 
 def _load_settings() -> Settings:
