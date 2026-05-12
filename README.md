@@ -37,7 +37,7 @@ Supported environment variables:
 
 - `GROQ_API_KEY` (required)
 - `MODEL_NAME` (optional, default: `llama-3.1-8b-instant`)
-- `ROUTER_TEMPERATURE` (optional, default: `0.0`, valid range `0.0-1.0`)
+- `ROUTER_TEMPERATURE` (optional, default: `0.0`, valid range `0.0-2.0`)
 
 ## Usage
 

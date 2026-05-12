@@ -35,9 +35,9 @@ def _parse_router_temperature(raw_value: str) -> float:
         raise ValueError(
             f"Invalid ROUTER_TEMPERATURE value: {raw_value!r}. Expected a numeric value."
         ) from exc
-    if not 0.0 <= parsed_temperature <= 1.0:
+    if not 0.0 <= parsed_temperature <= 2.0:
         raise ValueError(
-            f"ROUTER_TEMPERATURE must be between 0.0 and 1.0, got {parsed_temperature}."
+            f"ROUTER_TEMPERATURE must be between 0.0 and 2.0, got {parsed_temperature}."
         )
     return parsed_temperature
 
@@ -53,7 +53,7 @@ def _load_settings() -> Settings:
     except ValidationError as exc:
         logger.error("Configuration validation failed.")
         raise ValueError(
-            "Configuration error: set GROQ_API_KEY and ensure ROUTER_TEMPERATURE is between 0.0 and 1.0."
+            "Configuration error: set GROQ_API_KEY and ensure ROUTER_TEMPERATURE is between 0.0 and 2.0."
         ) from exc
 
 
