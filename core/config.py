@@ -33,11 +33,11 @@ def _parse_router_temperature(raw_value: str) -> float:
         parsed_temperature = float(raw_value)
     except ValueError as exc:
         raise ValueError(
-            "Invalid ROUTER_TEMPERATURE value. Expected a number between 0.0 and 1.0."
+            f"Invalid ROUTER_TEMPERATURE value: {raw_value!r}. Expected a numeric value."
         ) from exc
     if not 0.0 <= parsed_temperature <= 1.0:
         raise ValueError(
-            "Invalid ROUTER_TEMPERATURE value. Expected a number between 0.0 and 1.0."
+            f"ROUTER_TEMPERATURE must be between 0.0 and 1.0, got {parsed_temperature}."
         )
     return parsed_temperature
 

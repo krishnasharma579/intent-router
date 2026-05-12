@@ -1,7 +1,9 @@
 from test_router import TEST_QUERIES, run_tests
 
+import pytest
 
-def test_run_tests_success_path():
+
+def test_run_tests_success_path() -> None:
     def fake_classifier(_: str) -> str:
         return "general_chat"
 
@@ -10,9 +12,10 @@ def test_run_tests_success_path():
     assert successful == len(TEST_QUERIES)
 
 
-def test_run_tests_handles_expected_errors():
+@pytest.mark.parametrize("error_type", [RuntimeError, ValueError, TypeError])
+def test_run_tests_handles_expected_errors(error_type: type[Exception]) -> None:
     def fake_classifier(_: str) -> str:
-        raise RuntimeError("mock failure")
+        raise error_type("mock failure")
 
     successful = run_tests(fake_classifier)
 

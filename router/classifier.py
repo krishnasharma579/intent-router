@@ -13,10 +13,10 @@ logger = logging.getLogger(__name__)
 
 def classify_intent(user_input: str) -> str:
     """Classify a user query into one routing intent."""
-    if not isinstance(user_input, str):
-        raise TypeError("user_input must be a string.")
-
-    normalized_input = user_input.strip()
+    try:
+        normalized_input = user_input.strip()
+    except AttributeError as exc:
+        raise TypeError("user_input must be a string.") from exc
     if not normalized_input:
         raise ValueError("user_input cannot be empty.")
 
